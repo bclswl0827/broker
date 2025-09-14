@@ -1,0 +1,15 @@
+package main
+
+const (
+	GIN_OUTBOUND_BIND_ADDR = "0.0.0.0"
+)
+
+const (
+	FRPS_ENTRY_BIND_ADDR = "127.0.0.2"
+	FRPS_ENTRY_BIND_PORT = 7000
+)
+
+const (
+	FRPS_PROXY_BIND_ADDR = "127.0.0.2"
+	FRPS_PROXY_BIND_PORT = 8000
+)
