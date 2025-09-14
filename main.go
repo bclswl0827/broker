@@ -34,7 +34,8 @@ func init() {
 }
 
 func main() {
-	frpSvr, err := newFrpsInstance(getAccessToken())
+	token := getAccessToken()
+	frpSvr, err := newFrpsInstance(token)
 	if err != nil {
 		logrus.Panicf("failed to create FRP server instance: %v", err)
 	}
@@ -59,6 +60,7 @@ func main() {
 	}()
 
 	go func() {
+		logrus.Infof("starting frp server, token: %s", token)
 		frpSvr.Run(context.Background())
 	}()
 
