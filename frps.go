@@ -36,7 +36,7 @@ func (w *frpsLogWriter) Write(p []byte) (n int, err error) {
 func newFrpsInstance(token string) (*server.Service, error) {
 	trueVal := true
 
-	authConfig := v1.AuthServerConfig{Token: "token"}
+	authConfig := v1.AuthServerConfig{Token: token}
 	if err := authConfig.Complete(); err != nil {
 		return nil, fmt.Errorf("failed to complete auth config: %w", err)
 	}
