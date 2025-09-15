@@ -7,6 +7,7 @@ require (
 	github.com/fatedier/frp v0.64.0
 	github.com/fatedier/golib v0.5.1
 	github.com/gin-gonic/gin v1.10.1
+	github.com/gorilla/websocket v1.5.0
 	github.com/koding/websocketproxy v0.0.0-20181220232114-7ed82d81a28c
 	github.com/sirupsen/logrus v1.9.3
 )
@@ -30,7 +31,6 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
