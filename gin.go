@@ -105,14 +105,17 @@ func newGinHttpLogger(notLogged ...string) gin.HandlerFunc {
 }
 
 func newGinInstance(addr, port string) (*http.Server, error) {
+	frpsEntryPort := getFrpsEntryPort()
+	frpsProxyPort := getFrpsProxyPort()
+
 	engine := gin.New()
 	engine.Use(gin.Recovery())
 	engine.Use(newGinHttpLogger())
 	engine.Use(newGinReverseProxy("/~!frp", reverseProxyOptions{
-		Target: fmt.Sprintf("http://%s:%d/~!frp", FRPS_ENTRY_BIND_ADDR, FRPS_ENTRY_BIND_PORT),
+		Target: fmt.Sprintf("http://%s:%d/~!frp", FRPS_ENTRY_BIND_ADDR, frpsEntryPort),
 	}))
 	engine.Use(newGinReverseProxy("/", reverseProxyOptions{
-		Target: fmt.Sprintf("http://%s:%d", FRPS_PROXY_BIND_ADDR, FRPS_PROXY_BIND_PORT),
+		Target: fmt.Sprintf("http://%s:%d", FRPS_PROXY_BIND_ADDR, frpsProxyPort),
 	}))
 
 	server := &http.Server{

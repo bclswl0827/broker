@@ -50,14 +50,17 @@ func newFrpsInstance(token string) (*server.Service, error) {
 	}
 	transportConfig.Complete()
 
+	frpsEntryPort := getFrpsEntryPort()
+	frpsProxyPort := getFrpsProxyPort()
+
 	commonConfig := &v1.ServerConfig{
 		Auth:              authConfig,
 		BindAddr:          FRPS_ENTRY_BIND_ADDR,
-		BindPort:          FRPS_ENTRY_BIND_PORT,
+		BindPort:          frpsEntryPort,
 		ProxyBindAddr:     FRPS_PROXY_BIND_ADDR,
 		MaxPortsPerClient: 1,
 		Transport:         transportConfig,
-		AllowPorts:        []types.PortsRange{{Single: FRPS_PROXY_BIND_PORT}},
+		AllowPorts:        []types.PortsRange{{Single: frpsProxyPort}},
 	}
 	if err := commonConfig.Complete(); err != nil {
 		return nil, fmt.Errorf("failed to complete common config: %w", err)

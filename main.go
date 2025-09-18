@@ -60,7 +60,8 @@ func main() {
 	}()
 
 	go func() {
-		logrus.Infof("starting frp server, token: %s", token)
+		frpsProxyPort := getFrpsProxyPort()
+		logrus.Infof("starting frp server, proxy HTTP traffic on port %d, auth token: %s", frpsProxyPort, token)
 		frpSvr.Run(context.Background())
 	}()
 
